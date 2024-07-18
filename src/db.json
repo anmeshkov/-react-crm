@@ -1,0 +1,76 @@
+{
+  "requests": [
+    {
+      "id": 1,
+      "name": "Eula Foster",
+      "phone": "+7 (201) 307-8968",
+      "email": "wawzeag@jigivum.gl",
+      "product": "course-js",
+      "date": "2024-07-18T06:31:13.111Z",
+      "status": "new"
+    },
+    {
+      "id": 2,
+      "name": "Hilda Taylor",
+      "phone": "+7 (767) 603-4242",
+      "email": "jozpa@tewo.lu",
+      "product": "course-vue",
+      "date": "2024-07-18T06:31:13.529Z",
+      "status": "new"
+    },
+    {
+      "id": 3,
+      "name": "Henry Carroll",
+      "phone": "+7 (542) 608-4187",
+      "email": "curdov@dobnuho.vu",
+      "product": "course-php",
+      "date": "2024-07-18T06:31:13.687Z",
+      "status": "new"
+    },
+    {
+      "id": 4,
+      "name": "Polly Evans",
+      "phone": "+7 (446) 589-5051",
+      "email": "mepaz@roicwig.re",
+      "product": "course-html",
+      "date": "2024-07-18T06:31:13.830Z",
+      "status": "new"
+    },
+    {
+      "id": 5,
+      "name": "Hulda Jordan",
+      "phone": "+7 (227) 239-4597",
+      "email": "razew@zopup.md",
+      "product": "course-vue",
+      "date": "2024-07-18T06:31:13.979Z",
+      "status": "new"
+    },
+    {
+      "id": 6,
+      "name": "Hulda Jordan",
+      "phone": "+7 (227) 239-4597",
+      "email": "razew@zopup.md",
+      "product": "course-vue",
+      "date": "2024-07-18T06:31:14.137Z",
+      "status": "new"
+    },
+    {
+      "id": 7,
+      "name": "Annie Andrews",
+      "phone": "+7 (606) 647-7889",
+      "email": "ressadigu@wedoz.tp",
+      "product": "course-php",
+      "date": "2024-07-18T08:29:43.681Z",
+      "status": "new"
+    },
+    {
+      "id": 8,
+      "name": "Lillie Lynch",
+      "phone": "+7 (883) 318-3434",
+      "email": "meri@wiktuzpez.pf",
+      "product": "course-html",
+      "date": "2024-07-18T08:29:44.251Z",
+      "status": "new"
+    }
+  ]
+}
