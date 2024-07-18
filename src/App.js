@@ -1,6 +1,22 @@
+/* ----------------------------------------------------------------
+  App Component
+---------------------------------------------------------------- */
+import AddPage from "./pages/AddPage";
+import Navigation from "./components/Navigation";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import EditPage from "./pages/EditPage";
+
 function App() {
   return (
-    <h1>Hello</h1>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/add" element={<AddPage />} />
+        <Route path="/edit" element={<EditPage />} />
+      </Routes>
+    </Router>
   );
 }
 
