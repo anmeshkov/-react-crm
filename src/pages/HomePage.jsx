@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import LeftPanel from "../components/LeftPanel";
 import MainWrapper from "../components/MainWrapper";
+import { serverPath } from "../helpers/varibles";
 
 const HomePage = () => {
   const [requests, setRequests] = useState(null); // запросы
@@ -12,7 +13,7 @@ const HomePage = () => {
 
   // запрос на сервер
   useEffect(() => {
-    fetch("http://localhost:8080/requests")
+    fetch(serverPath)
       .then((res) => {
         if(res.ok !== true) {
           throw Error('Could not fetch the data from this resource');

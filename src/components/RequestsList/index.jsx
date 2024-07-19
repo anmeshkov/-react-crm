@@ -1,21 +1,45 @@
 /* ----------------------------------------------------------------
   Request List Component
 ---------------------------------------------------------------- */
+import { courseNames as courses } from "../../helpers/varibles";
 
 const RequestsList = ({requests}) => {
 
+  const renderRequestStatus = (status) => {
+    switch (status) {
+      case "new":
+        return `<div className="badge badge-pill badge-danger">Новый</div>`;
+      case "inwork":
+        return `<div className="badge badge-pill badge-warning">В работе</div>`;
+      case "complete":
+        return `<div className="badge badge-pill badge-success">Завершенный</div>`;
+      default:
+        return `<div className="badge badge-pill badge-danger">Новый</div>`
+    }
+  }
+
   //рендерим разметку для всех заявок
   const renderRequests = requests.map((request) => {
+    const modifiedDate = new Date(request.date).toLocaleDateString("ru-RU", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+
+    const courseTitle = courses.find((course) => course.id === request.product).title;
+    console.log(courseTitle);
+
     return (
       <tr key={request.id}>
         <th scope="row">{request.id}</th>
-        <td>01.04.2020</td>
-        <td>{request.product}</td>
+        <td>{modifiedDate}</td>
+        <td>{courseTitle}</td>
         <td>{request.name}</td>
         <td>{request.email}</td>
         <td>{request.phone}</td>
         <td>
-          <div className="badge badge-pill badge-danger">{request.status}</div>
+          {/* <div className="badge badge-pill badge-danger">{request.status}</div> */}
+          {renderRequestStatus(request.status)}
         </td>
         <td>
           <a href="edit.html">Редактировать</a>
