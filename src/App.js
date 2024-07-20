@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/add" element={<AddPage />} />
         <Route path="/edit" element={<EditPage />} />
+        <Route path="/edit/:id" element={<EditPage />} />
       </Routes>
     </Router>
   );

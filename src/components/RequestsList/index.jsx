@@ -3,6 +3,7 @@
 ---------------------------------------------------------------- */
 import { courseNames as courses } from "../../helpers/varibles";
 import { requestStatus } from "../../helpers/varibles";
+import { Link } from "react-router-dom";
 
 const RequestsList = ({ requests }) => {
   //рендерим разметку для всех заявок
@@ -36,7 +37,7 @@ const RequestsList = ({ requests }) => {
           <div className={`badge badge-pill ${badgeClass}`}>{badgeTitle}</div>
         </td>
         <td>
-          <a href="edit.html">Редактировать</a>
+          <a href={`/edit/${request.id}`}>Редактировать</a>
         </td>
       </tr>
     );
