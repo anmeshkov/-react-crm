@@ -10,3 +10,9 @@ export const courseNames = [
   { id: "course-php", title: "Курс по PHP" },
   { id: "course-wordpress", title: "Курс по WordPress" },
 ];
+
+export const requestStatus = [
+  {id: 'new', className: 'badge-danger', title: 'Новый'},
+  {id: 'inwork', className: 'badge-warning', title: 'В работе'},
+  {id: 'complete', className: 'badge-success', title: 'Завершенный'}
+]

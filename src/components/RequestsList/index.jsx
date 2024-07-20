@@ -2,32 +2,27 @@
   Request List Component
 ---------------------------------------------------------------- */
 import { courseNames as courses } from "../../helpers/varibles";
+import { requestStatus } from "../../helpers/varibles";
 
-const RequestsList = ({requests}) => {
-
-  const renderRequestStatus = (status) => {
-    switch (status) {
-      case "new":
-        return `<div className="badge badge-pill badge-danger">Новый</div>`;
-      case "inwork":
-        return `<div className="badge badge-pill badge-warning">В работе</div>`;
-      case "complete":
-        return `<div className="badge badge-pill badge-success">Завершенный</div>`;
-      default:
-        return `<div className="badge badge-pill badge-danger">Новый</div>`
-    }
-  }
-
+const RequestsList = ({ requests }) => {
   //рендерим разметку для всех заявок
   const renderRequests = requests.map((request) => {
+    // изменяем дату заявки в формате "дд.мм.гггг" и время в формате "чч:мм"
+    // дата создания заявки
     const modifiedDate = new Date(request.date).toLocaleDateString("ru-RU", {
       year: "numeric",
       month: "numeric",
       day: "numeric",
-    })
+    });
 
-    const courseTitle = courses.find((course) => course.id === request.product).title;
-    console.log(courseTitle);
+    // имя курса
+    const courseTitle = courses.find(
+      (course) => course.id === request.product
+    ).title;
+
+    // статус заявки (бейдж)
+    let badgeClass = requestStatus.find((status) => status.id === request.status).className;
+    let badgeTitle = requestStatus.find((status) => status.id === request.status).title;
 
     return (
       <tr key={request.id}>
@@ -38,8 +33,7 @@ const RequestsList = ({requests}) => {
         <td>{request.email}</td>
         <td>{request.phone}</td>
         <td>
-          {/* <div className="badge badge-pill badge-danger">{request.status}</div> */}
-          {renderRequestStatus(request.status)}
+          <div className={`badge badge-pill ${badgeClass}`}>{badgeTitle}</div>
         </td>
         <td>
           <a href="edit.html">Редактировать</a>
