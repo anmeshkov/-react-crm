@@ -11,10 +11,11 @@ const HomePage = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [fRequests, setFRequests] = useState(null);
+  const [fRequests, setFRequests] = useState(null); // фильтрованные запросы
   // состояние для фильтра
-  const [filterStatus, setFilterStatus] = useState("all");
-  const [filterProduct, setFilterProduct] = useState("all");
+  const [filter, setFilter] = useState({ status: "all", product: "all" });
+
+  const [counter, setCounter] = useState(null);
 
   // запрос на сервер
   useEffect(() => {
@@ -27,10 +28,10 @@ const HomePage = () => {
       })
       .then((data) => {
         // фильтруем массив заявок по статусу
-        console.log("DATA ->>>", data);
         setRequests(data);
         setFRequests(data);
         setLoading(false);
+        loadFilter();
       })
       .catch((err) => {
         console.log(err.message);
@@ -39,34 +40,67 @@ const HomePage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const filterStatus = filter.status;
+    const filterProduct = filter.product;
+
+    // фильтруем массив заявок по статусу и продукту
+    if (requests) {
+      const arr = requests
+        .filter((request) => {
+          return filterStatus === "all"
+            ? request
+            : filterStatus === request.status;
+        })
+        .filter((request) => {
+          return filterProduct === "all"
+            ? request
+            : filterProduct === request.product;
+        });
+
+      setFRequests(arr);
+    }
+  }, [filter]);
+
+  // счетчик заявок по статусу
+  useEffect(() => {
+    if (requests) {
+      // счетчик новых заявок
+      const value = requests.reduce(
+        (acc, cur) => (cur.status === "new" ? acc + 1 : acc),
+        0
+      );
+      setCounter({ new: value });
+    }
+  }, [requests]);
+
   // Фильтрация списка по статусу
   const filterByStatus = (status) => {
-    setFilterStatus(status);
-    filterAllRequests(requests)
+    setFilter({ ...filter, status: status });
+    // сохранение в LocalStorage
+    localStorage.setItem(
+      "filter",
+      JSON.stringify({ ...filter, status: status })
+    );
   };
 
   // Фильтрация списка по продукту
   const filterByProduct = (product) => {
-    setFilterProduct(product);
+    setFilter({ ...filter, product: product });
+    // сохранение в LocalStorage
+    localStorage.setItem(
+      "filter",
+      JSON.stringify({ ...filter, product: product })
+    );
   };
 
-  // Функция для фильтрации заявок в таблице
-  const filterAllRequests = (data) => {
-    const status = filterStatus; // значение фильтра по статусу
-    // const product = filterProduct; // значение фильтра по продукту
-
-    // фильтруем массив заявок по статусу и продукту
-    const arr = data.filter((request) => {
-      // return status === 'all' ? request : status === request.status
-      if (status === 'all') {
-        return request
-      } else if (status === request.status) {
-        return request
-      }
-    })
-
-    console.log('ARR', arr);
-    setFRequests(arr)
+  // загрузка из LocalStorage
+  const loadFilter = () => {
+    const data = localStorage.getItem("filter");
+    if (data) {
+      const filter = JSON.parse(data);
+      setFilter(filter);
+    }
   };
 
   // добавление стилей для body
@@ -74,13 +108,14 @@ const HomePage = () => {
 
   return (
     <div>
-      <LeftPanel filterByStatus={filterByStatus} />
+      <LeftPanel filterByStatus={filterByStatus} counter={counter} />
       <MainWrapper
-        requests={requests}
+        requests={fRequests}
         isLoading={isLoading}
         error={error}
         filterByStatus={filterByStatus}
         filterByProduct={filterByProduct}
+        filter={filter}
       />
     </div>
   );

@@ -1,13 +1,14 @@
 /* ----------------------------------------------------------------
   Top Status Bar Component
 ---------------------------------------------------------------- */
+import togleButtonActiveClass from "../../helpers/togleButtonActiveClass";
 
 const TopStatusBar = ({ filterByStatus }) => {
+
   // Обработка нажатия на кнопку фильтра статуса заявок
-  // Обновление статуса заявок
-  
   const handleStatusChange = (event) => {
     filterByStatus(event.target.dataset.value);
+    togleButtonActiveClass(event.target.dataset.value)
   }
 
   return (

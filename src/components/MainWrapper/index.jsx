@@ -5,7 +5,7 @@ import RequestsList from "../RequestsList";
 import TopStatusBar from "../TopStatusBar";
 import ProductSelect from "../ProductSelect";
 
-const MainWrapper = ({requests, isLoading, error, filterByStatus, filterByProduct}) => {
+const MainWrapper = ({requests, isLoading, error, filterByStatus, filterByProduct, filter}) => {
   return (
     <div className="main-wrapper">
       <div className="container-fluid">
@@ -15,12 +15,12 @@ const MainWrapper = ({requests, isLoading, error, filterByStatus, filterByProduc
           <div className="row mb-3 justify-content-start">
             {/* Col */}
             <div className="col">
-              <TopStatusBar filterByStatus={filterByStatus}/>
+              <TopStatusBar filterByStatus={filterByStatus} filter={filter}/>
             </div>
             {/* // Col */}
             {/* Col */}
             <div className="col">
-              <ProductSelect filterByProduct={filterByProduct}/>
+              <ProductSelect filterByProduct={filterByProduct} filter={filter}/>
             </div>
             {/* // Col */}
           </div>

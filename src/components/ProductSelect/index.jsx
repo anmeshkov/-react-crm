@@ -3,7 +3,7 @@
 ---------------------------------------------------------------- */
 import { courseNames } from "../../helpers/varibles";
 
-const ProductSelect = ({filterByProduct}) => {
+const ProductSelect = ({filterByProduct, filter}) => {
 
   const handleProductChange = (event) => {
     filterByProduct(event.target.value);
@@ -16,7 +16,7 @@ const ProductSelect = ({filterByProduct}) => {
   })
 
   return (
-    <select onChange={handleProductChange} className="custom-select" id="productSelect">
+    <select onChange={handleProductChange} className="custom-select" id="productSelect" value={filter.product}>
       <option value="all">Все продукты</option>
       {productList}
     </select>
