@@ -1,34 +1,49 @@
 /* ----------------------------------------------------------------
   Left Panel Navigation Component
 ---------------------------------------------------------------- */
-import togleButtonActiveClass from "../../helpers/togleButtonActiveClass";
 import CounterBadge from "../counterBadge";
 
-const LeftPanelNavigation = ({ filterByStatus, counter }) => {
+const LeftPanelNavigation = ({ filterByStatus, counter, filter }) => {
   // Обработка нажатия на кнопку фильтра статуса заявок
   // Обновление статуса заявок
   const handleStatusChange = (event) => {
-    filterByStatus(event.target.dataset.value);
-    // event.target.classList.add('active')
-    if (event.target.dataset.value) {
-      togleButtonActiveClass(event.target.dataset.value);
-    }
+    // Обновляем фильтр по статусу заявок
+    const button = event.target.closest("a[data-value]");
+    filterByStatus(button.dataset.value);
   };
+
+  const buttons = [
+    { data: "all", label: "Все вместе", showCounters: false },
+    { data: "new", label: "Новые", showCounters: true },
+    { data: "inwork", label: "В работе", showCounters: false },
+    { data: "complete", label: "Завершенные", showCounters: false },
+  ];
+
+  const renderButtons = buttons.map((button) => {
+    // Если текущая кнопка активна, добавляем активный класс
+    const isActive = filter.status === button.data ? "active" : "";
+    return (
+      <li key={button.data}>
+        <a
+          onClick={handleStatusChange}
+          data-value={button.data}
+          data-role="left-status"
+          href="#"
+          className={isActive}
+        >
+          {button.label}
+          {/* отображаем счетчик */}
+          {counter && button.showCounters && <CounterBadge counter={counter} />}
+        </a>
+      </li>
+    );
+  });
 
   return (
     <ul>
-      <li>
-        <a
-          onClick={handleStatusChange}
-          data-value="all"
-          data-role="left-status"
-          href="#"
-          className="active"
-        >
-          Все вместе
-        </a>
-      </li>
-      <li>
+      {renderButtons}
+
+      {/* <li>
         <a
           onClick={handleStatusChange}
           data-value="new"
@@ -36,29 +51,10 @@ const LeftPanelNavigation = ({ filterByStatus, counter }) => {
           href="#"
         >
           Новые
-        {counter && <CounterBadge counter={counter}/>}
+          {counter && <CounterBadge counter={counter} />}
         </a>
       </li>
-      <li>
-        <a
-          onClick={handleStatusChange}
-          data-value="inwork"
-          data-role="left-status"
-          href="#"
-        >
-          В работе
-        </a>
-      </li>
-      <li>
-        <a
-          onClick={handleStatusChange}
-          data-value="complete"
-          data-role="left-status"
-          href="#"
-        >
-          Завершенные
-        </a>
-      </li>
+      <li> */}
     </ul>
   );
 };

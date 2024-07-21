@@ -108,7 +108,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <LeftPanel filterByStatus={filterByStatus} counter={counter} />
+      <LeftPanel filterByStatus={filterByStatus} counter={counter} filter={filter}/>
       <MainWrapper
         requests={fRequests}
         isLoading={isLoading}
