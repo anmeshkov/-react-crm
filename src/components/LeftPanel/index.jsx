@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------------
   Left Panel Component
 ---------------------------------------------------------------- */
-import { useState } from "react";
 import User from "../User";
 import LeftPanelNavigation from "../LeftPanelNavigation";
 

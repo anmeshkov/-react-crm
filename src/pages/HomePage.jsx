@@ -28,6 +28,7 @@ const HomePage = () => {
       })
       .then((data) => {
         // фильтруем массив заявок по статусу
+        console.log('Data loaded successfully');
         setRequests(data);
         setFRequests(data);
         setLoading(false);
