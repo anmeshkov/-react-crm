@@ -6,7 +6,7 @@ import { requestStatus } from "../../helpers/varibles";
 import { courseNames } from "../../helpers/varibles";
 import modifyDate from "../../helpers/modifyDate";
 
-const EditRequestForm = ({ id, request, handleSubmit, setRequest }) => {
+const EditRequestForm = ({ id, request, handleSubmit, setRequest, deleteRequest, isPending }) => {
   // рендер имен курсов
   const renderCourseNames = (courseList) => {
     return courseNames.map((course) => {
@@ -34,6 +34,11 @@ const EditRequestForm = ({ id, request, handleSubmit, setRequest }) => {
     // обработка изменений заявки
     handleSubmit(id);
   };
+
+  const onClickDelete = () => {
+    // удаление заявки
+    deleteRequest(id)
+  }
 
   return (
     <form onSubmit={onFormSubmit} id="form">
@@ -150,10 +155,13 @@ const EditRequestForm = ({ id, request, handleSubmit, setRequest }) => {
       </div>
       {/* //card */}
       <div className="row justify-content-between">
+        <div className="col text-left">
+          {!isPending && <button onClick={onClickDelete} type="button" className="btn btn-danger">Удалить заявку</button>}
+          {isPending && <button onClick={onClickDelete} type="button" className="btn btn-danger" disabled>Удалить заявку</button>}
+        </div>
         <div className="col text-right">
-          <button type="submit" className="btn btn-primary">
-            Сохранить изменения
-          </button>
+          {!isPending && <button type="submit" className="btn btn-primary">Сохранить изменения</button>}
+          {isPending && <button type="submit" className="btn btn-primary" disabled>Сохранить изменения</button>}
         </div>
       </div>
     </form>

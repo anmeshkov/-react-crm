@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import EditRequestForm from "../components/EditRequestForm";
 import { useParams } from "react-router-dom";
 import { serverPath } from "../helpers/varibles";
+import { useNavigate } from "react-router-dom";
 
 const EditPage = () => {
   document.body.classList.add("with-nav");
@@ -13,6 +14,9 @@ const EditPage = () => {
   const [request, setRequest] = useState(null); // запрос
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isPending, setIsPending] = useState(false);
+
+  const navigate = useNavigate();
 
   // загрузка запроса по id
   useEffect(() => {
@@ -24,7 +28,6 @@ const EditPage = () => {
         return res.json();
       })
       .then((data) => {
-        console.log("->>>>>>>", data);
         setRequest(data);
         setLoading(false);
       })
@@ -35,10 +38,60 @@ const EditPage = () => {
       });
   }, []);
 
-  // отправка заявки на сервер
+  // Обновление данных на сервере
   const handleSubmit = (id) => {
-    console.log('handleSubmit', id);
-    console.log(request);
+    setIsPending(true);
+    // Отправка запроса на сервер
+    fetch(serverPath + "/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request),
+    })
+      .then((res) => {
+        if (res.ok !== true) {
+          throw Error("Could not update the data on the server");
+        }
+        console.log("Success! Request updated successfully");
+        setIsPending(false);
+        // перенаправляем на главную страницу
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setIsPending(false);
+        setError(err.message);
+      });
+  };
+
+  const deleteRequest = () => {
+    setIsPending(true);
+    // Удаление запроса на сервере
+    let confirmDelete = window.confirm(
+      "Вы действительно хотите удалить заявку?"
+    );
+
+    if (confirmDelete) {
+      // Отправка запроса на сервер
+      fetch(serverPath + "/" + id, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok !== true) {
+            throw Error("Could not update the data on the server");
+          }
+          console.log("Success! Request delete successfully");
+          setIsPending(false);
+          // перенаправляем на главную страницу
+          navigate("/");
+        })
+        .catch((err) => {
+          console.log(err.message);
+          setIsPending(false);
+          setError(err.message);
+        });
+    }
   };
 
   return (
@@ -62,7 +115,16 @@ const EditPage = () => {
           <div className="col">
             {isLoading && <h2>Загрузка заявки...</h2>}
             {error && <h2>{error}</h2>}
-            {request && <EditRequestForm id={id} request={request} handleSubmit={handleSubmit} setRequest={setRequest}/>}
+            {request && (
+              <EditRequestForm
+                id={id}
+                request={request}
+                handleSubmit={handleSubmit}
+                setRequest={setRequest}
+                deleteRequest={deleteRequest}
+                isPending={isPending}
+              />
+            )}
           </div>
           {/* //col */}
         </div>
