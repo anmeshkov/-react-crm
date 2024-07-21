@@ -2,8 +2,10 @@
   Main Wrapper Component
 ---------------------------------------------------------------- */
 import RequestsList from "../RequestsList";
+import TopStatusBar from "../TopStatusBar";
+import ProductSelect from "../ProductSelect";
 
-const MainWrapper = ({requests, isLoading, error}) => {
+const MainWrapper = ({requests, isLoading, error, filterByStatus, filterByProduct}) => {
   return (
     <div className="main-wrapper">
       <div className="container-fluid">
@@ -13,24 +15,12 @@ const MainWrapper = ({requests, isLoading, error}) => {
           <div className="row mb-3 justify-content-start">
             {/* Col */}
             <div className="col">
-              <div id="topStatusBar" className="btn-group" role="group" aria-label="...">
-                <a href="#" className="btn btn-light" data-value="all">Все</a>
-                <a href="#" className="btn btn-light" data-value="new">Новые</a>
-                <a href="#" className="btn btn-light" data-value="inwork">В работе</a>
-                <a href="#" className="btn btn-light" data-value="complete">Завершенные</a>
-              </div>
+              <TopStatusBar filterByStatus={filterByStatus}/>
             </div>
             {/* // Col */}
             {/* Col */}
             <div className="col">
-              <select className="custom-select" id="productSelect">
-                <option value="all">Все продукты</option>
-                <option value="course-html">Курс по верстке</option>
-                <option value="course-js">Курс по JavaScript</option>
-                <option value="course-vue">Курс по VUE JS</option>
-                <option value="course-php">Курс по PHP</option>
-                <option value="course-wordpress">Курс по WordPress</option>
-              </select>
+              <ProductSelect filterByProduct={filterByProduct}/>
             </div>
             {/* // Col */}
           </div>
