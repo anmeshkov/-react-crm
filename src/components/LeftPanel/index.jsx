@@ -1,8 +1,11 @@
 /* ----------------------------------------------------------------
   Left Panel Component
 ---------------------------------------------------------------- */
+import { useState } from "react";
+import User from "../User";
 
 const LeftPanel = () => {
+
   return (
     <div className="left-panel blue-skin">
       {/* Logo */}
@@ -12,12 +15,7 @@ const LeftPanel = () => {
       </div>
       {/* // Logo */}
       {/* User */}
-      <div className="left-panel__user clearfix">
-        <div className="left-panel__user-photo">
-          <img src="img/avatars/avatar-128.jpg" alt="Avatar" />
-        </div>
-        <div className="left-panel__user-name">Петр <br />Васильевич</div>
-      </div>
+      <User userName/>
       {/* // User */}
       {/* Navigation 1 */}
       <div className="left-panel__navigation">

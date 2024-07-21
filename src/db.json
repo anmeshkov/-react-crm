@@ -5,7 +5,7 @@
       "name": "Hilda Taylor",
       "phone": "+7 (767) 603-4242",
       "email": "jozpa@tewo.lu",
-      "product": "course-vue",
+      "product": "course-wordpress",
       "date": "2024-07-18T06:31:13.529Z",
       "status": "complete"
     },
@@ -132,7 +132,7 @@
       "email": "jahfug@jo.ch",
       "product": "course-vue",
       "date": "2024-07-19T11:54:46.395Z",
-      "status": "new",
+      "status": "inwork",
       "id": 18
     },
     {
@@ -141,7 +141,7 @@
       "email": "uc@ziisurej.ms",
       "product": "course-html",
       "date": "2024-07-19T11:54:46.560Z",
-      "status": "new",
+      "status": "inwork",
       "id": 19
     },
     {
@@ -231,7 +231,7 @@
       "email": "uc@ziisurej.ms",
       "product": "course-html",
       "date": "2024-07-19T11:54:56.498Z",
-      "status": "new",
+      "status": "complete",
       "id": 29
     }
   ]
