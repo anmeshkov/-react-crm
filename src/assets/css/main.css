@@ -799,3 +799,15 @@ body.with-nav .left-panel {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
+.notfound__text {
+	font-size: 32px;
+	color: #fff;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.notfound__text span {
+	font-size: 150px;
+	display: block;
+}
