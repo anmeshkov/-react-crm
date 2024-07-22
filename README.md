@@ -1,6 +1,8 @@
 # Проект CRM на React JS
 
-[glitch](https://chiseled-aback-check.glitch.me/)
+### [server](https://chiseled-aback-check.glitch.me/)
+
+### [demo](https://anmeshkov.github.io/react-crm-build/)
 
 ## Задание
 
