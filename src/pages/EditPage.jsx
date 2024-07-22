@@ -6,10 +6,9 @@ import EditRequestForm from "../components/EditRequestForm";
 import { useParams } from "react-router-dom";
 import { serverPath } from "../helpers/varibles";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const EditPage = () => {
-  document.body.classList.add("with-nav");
-
   const { id } = useParams();
   const [request, setRequest] = useState(null); // запрос
   const [isLoading, setLoading] = useState(true);
@@ -94,6 +93,15 @@ const EditPage = () => {
     }
   };
 
+  // добавляем классы к body при загрузке страницы и удаляем их при удалении компонента
+  useEffect(() => {
+    document.body.classList.add("with-nav");
+
+    return () => {
+      document.body.classList.remove("with-nav");
+    };
+  }, []);
+
   return (
     <div className="form-wrapper">
       <div className="container-fluid">
@@ -103,9 +111,7 @@ const EditPage = () => {
             <div className="admin-heading-1">Работа с заявкой</div>
           </div>
           <div className="col text-right">
-            <a href="/" className="btn btn-link">
-              Вернуться назад
-            </a>
+          <Link to="/" className="btn btn-link">Вернуться назад</Link>
           </div>
         </div>
         {/* // row */}

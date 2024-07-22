@@ -104,8 +104,16 @@ const HomePage = () => {
     }
   };
 
-  // добавление стилей для body
-  document.body.classList.add("with-nav", "body--dashboard");
+  // document.body.classList.add("with-nav", "body--dashboard");
+
+  // добавляем классы к body при загрузке страницы и удаляем их при удалении компонента
+  useEffect(() => {
+    document.body.classList.add("with-nav", "body--dashboard");
+    
+    return () => {
+       document.body.classList.remove("with-nav", "body--dashboard");
+    }
+ }, [])
 
   return (
     <div>

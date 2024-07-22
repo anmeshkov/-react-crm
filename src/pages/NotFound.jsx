@@ -1,9 +1,18 @@
 /* ----------------------------------------------------------------
   404 Page
 ---------------------------------------------------------------- */
+import { useEffect } from "react";
 
 const NotFound = () => {
-  document.body.classList.add("with-nav", "radial-bg", "flex-center");
+
+  // добавляем классы к body при загрузке страницы и удаляем их при удалении компонента
+  useEffect(() => {
+    document.body.classList.add("with-nav", "radial-bg", "flex-center");
+    
+    return () => {
+       document.body.classList.remove("with-nav", "radial-bg", "flex-center");
+    }
+ }, [])
 
   return (
 

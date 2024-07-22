@@ -1,14 +1,15 @@
 /* ----------------------------------------------------------------
   Navigation Component
 ---------------------------------------------------------------- */
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <nav className="project-nav">
       <div className="project-nav__links-wrapper">
-        <a href="/add">Форма добавления заявок</a>
-        <a href="/">Таблица с заявками</a>
-        <a href="/edit">Редактирование заявки</a>
+        <Link to="/add">Форма добавления заявок</Link>
+        <Link to="/">Таблица с заявками</Link>
+        <Link to="/edit">Редактирование заявки</Link>
       </div>
     </nav>
   );

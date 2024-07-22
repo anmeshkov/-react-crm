@@ -47,7 +47,7 @@ const RequestsList = ({ requests }) => {
           <div className={badgeClass}>{badgeTitle}</div>
         </td>
         <td>
-          <a href={`/edit/${request.id}`}>Редактировать</a>
+          <Link to={`/edit/${request.id}`}>Редактировать</Link>
         </td>
       </tr>
     );
