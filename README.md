@@ -1,5 +1,7 @@
 # Проект CRM на React JS
 
+[glitch](https://chiseled-aback-check.glitch.me/)
+
 ## Задание
 
 ### Сделать проект CRM на React JS
